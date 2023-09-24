@@ -1,0 +1,220 @@
+{
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "enum": [0.2]
+    },
+    "run-as": {
+      "type": "string"
+    },
+    "env": {
+      "$ref": "#/definitions/env"
+    },
+    "phases": {
+      "type": "object",
+      "properties": {
+        "install": {
+          "$ref": "#/definitions/phase"
+        },
+        "pre_build": {
+          "$ref": "#/definitions/phase"
+        },
+        "build": {
+          "$ref": "#/definitions/phase"
+        },
+        "post_build": {
+          "$ref": "#/definitions/phase"
+        }
+      }
+    },
+    "proxy": {
+      "type": "object",
+      "properties": {
+        "upload-artifacts": {
+          "type": "boolean"
+        },
+        "logs": {
+          "type": "boolean"
+        }
+      }
+    },
+    "batch": {
+      "type": "object",
+      "properties": {
+        "fast-fail": {
+          "type": "boolean"
+        }
+      }
+    },
+    "reports": {
+      "type": "object",
+      "properties": {
+        "report-group-name-or-arn": {
+          "type": "object",
+          "properties": {
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "base-directory": {
+              "type": "string",
+              "description": "location"
+            },
+            "discard-paths": {
+              "type": "boolean"
+            },
+            "file-format": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "discard-paths": {
+          "type": "boolean"
+        },
+        "base-directory": {
+          "type": "string"
+        },
+        "exclude-paths": {
+          "type": "string"
+        },
+        "enable-symlinks": {
+          "type": "boolean"
+        },
+        "s3-prefix": {
+          "type": "string"
+        },
+        "secondary-artifacts": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+              "type": "object",
+              "properties": {
+                "files": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "name": {
+                  "type": "string"
+                },
+                "discard-paths": {
+                  "type": "boolean"
+                },
+                "base-directory": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "cache": {
+      "type": "object",
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "env": {
+      "type": "object",
+      "properties": {
+        "shell": {
+          "type": "string"
+        },
+        "variables": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+              "type": "string"
+            }
+          }
+        },
+        "parameter-store": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+              "type": "string"
+            }
+          }
+        },
+        "exported-variables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "secrets-manager": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+              "type": "string"
+            }
+          }
+        },
+        "git-credential-helper": {
+          "type": "boolean"
+        }
+      }
+    },
+    "phase": {
+      "type": "object",
+      "properties": {
+        "run-as": {
+          "type": "string"
+        },
+        "on-failure": {
+          "type": "string",
+          "enum": ["ABORT", "CONTINUE"]
+        },
+        "runtime-versions": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+              "type": "integer"
+            }
+          }
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "working-directory": {
+          "type": "string"
+        },
+        "finally": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

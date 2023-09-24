@@ -1,0 +1,760 @@
+{
+  "type": "object",
+  "description": "See https://clang.llvm.org/docs/ClangFormatStyleOptions.html",
+  "properties": {
+    "BasedOnStyle": {
+      "type": "string",
+      "enum": ["LLVM", "Google", "Chromium", "Mozilla", "WebKit"]
+    },
+    "AccessModifierOffset": {
+      "type": "integer"
+    },
+    "AlignAfterOpenBracket": {
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string",
+          "enum": ["Align", "DontAlign", "AlwaysBreak", "BlockIndent"]
+        }
+      ]
+    },
+    "AlignArrayOfStructures": {
+      "type": "string",
+      "enum": ["None", "Left", "Right"]
+    },
+    "AlignConsecutiveAssignments": {
+      "type": "string",
+      "enum": ["None", "Consecutive", "AcrossEmptyLines", "AcrossComments", "AcrossEmptyLinesAndComments"]
+    },
+    "AlignConsecutiveBitFields": {
+      "type": "string",
+      "enum": ["None", "Consecutive", "AcrossEmptyLines", "AcrossComments", "AcrossEmptyLinesAndComment"]
+    },
+    "AlignConsecutiveDeclarations": {
+      "type": "string",
+      "enum": ["None", "Consecutive", "AcrossEmptyLines", "AcrossComments", "AcrossEmptyLinesAndComments"]
+    },
+    "AlignConsecutiveMacros": {
+      "type": "string",
+      "enum": ["None", "Consecutive", "AcrossEmptyLines", "AcrossComments", "AcrossEmptyLinesAndComments"]
+    },
+    "AlignEscapedNewlines": {
+      "type": "string",
+      "enum": ["DontAlign", "Left", "Right"]
+    },
+    "AlignOperands": {
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string",
+          "enum": ["Align", "DontAlign", "AlignAfterOperator"]
+        }
+      ]
+    },
+    "AlignTrailingComments": {
+      "type": "object",
+      "properties": {
+        "Kind": {
+          "type": "string",
+          "enum": ["Leave", "Always", "Never"]
+        },
+        "OverEmptyLines": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "MaxEmptyLinesToKeep": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "AllowAllArgumentsOnNextLine": {
+      "type": "boolean"
+    },
+    "AllowAllConstructorInitializersOnNextLine": {
+      "type": "boolean"
+    },
+    "AllowAllParametersOfDeclarationOnNextLine": {
+      "type": "boolean"
+    },
+    "AllowShortBlocksOnASingleLine": {
+      "type": "string",
+      "enum": ["Never", "Empty", "Always"]
+    },
+    "AllowShortCaseLabelsOnASingleLine": {
+      "type": "boolean"
+    },
+    "AllowShortEnumsOnASingleLine": {
+      "type": "boolean"
+    },
+    "AllowShortFunctionsOnASingleLine": {
+      "type": "string",
+      "enum": ["None", "InlineOnly", "Empty", "Inline", "All"]
+    },
+    "AllowShortIfStatementsOnASingleLine": {
+      "type": "string",
+      "enum": ["Never", "WithoutElse", "OnlyFirstIf", "AllIfsAndElse"]
+    },
+    "AllowShortLambdasOnASingleLine": {
+      "type": "string",
+      "enum": ["None", "Empty", "Inline", "All"]
+    },
+    "AllowShortLoopsOnASingleLine": {
+      "type": "boolean"
+    },
+    "AlwaysBreakAfterDefinitionReturnType": {
+      "type": "string",
+      "enum": ["None", "All", "TopLevel"]
+    },
+    "AlwaysBreakAfterReturnType": {
+      "type": "string",
+      "enum": ["None", "All", "TopLevel", "AllDefinitions", "TopLevelDefinitions"]
+    },
+    "AlwaysBreakBeforeMultilineStrings": {
+      "type": "boolean"
+    },
+    "AlwaysBreakTemplateDeclarations": {
+      "type": "string",
+      "enum": ["No", "MultiLine", "Yes"]
+    },
+    "AttributeMacros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "BinPackArguments": {
+      "type": "boolean"
+    },
+    "BinPackParameters": {
+      "type": "boolean"
+    },
+    "BitFieldColonSpacing": {
+      "type": "string",
+      "enum": ["Both", "Before", "After", "None"]
+    },
+    "BraceWrapping": {
+      "type": "object",
+      "properties": {
+        "AfterCaseLabel": {
+          "type": "boolean"
+        },
+        "AfterClass": {
+          "type": "boolean"
+        },
+        "AfterControlStatement": {
+          "type": "string",
+          "enum": ["Never", "MultiLine", "Always"]
+        },
+        "AfterEnum": {
+          "type": "boolean"
+        },
+        "AfterFunction": {
+          "type": "boolean"
+        },
+        "AfterNamespace": {
+          "type": "boolean"
+        },
+        "AfterObjCDeclaration": {
+          "type": "boolean"
+        },
+        "AfterStruct": {
+          "type": "boolean"
+        },
+        "AfterUnion": {
+          "type": "boolean"
+        },
+        "BeforeCatch": {
+          "type": "boolean"
+        },
+        "BeforeElse": {
+          "type": "boolean"
+        },
+        "BeforeLambdaBody": {
+          "type": "boolean"
+        },
+        "BeforeWhile": {
+          "type": "boolean"
+        },
+        "IndentBraces": {
+          "type": "boolean"
+        },
+        "SplitEmptyRecord": {
+          "type": "boolean"
+        },
+        "SplitEmptyNamespace": {
+          "type": "boolean"
+        },
+        "SplitEmptyFunction": {
+          "type": "boolean"
+        }
+      }
+    },
+    "BracedInitializerIndentWidth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "BreakAfterAttributes": {
+      "type": "string",
+      "enum": ["Leave", "Always", "Never"]
+    },
+    "BreakAfterJavaFieldAnnotations": {
+      "type": "boolean"
+    },
+    "BreakArrays": {
+      "type": "boolean"
+    },
+    "BreakBeforeBinaryOperators": {
+      "type": "string",
+      "enum": ["None", "NonAssignment", "All"]
+    },
+    "BreakBeforeBraces": {
+      "type": "string",
+      "enum": ["Attach", "Linux", "Stroustrup", "Allman", "GNU", "WebKit", "Whitesmiths", "Custom"]
+    },
+    "BreakBeforeConceptDeclarations": {
+      "type": "string",
+      "enum": ["Never", "Allowed", "Always"]
+    },
+    "BreakBeforeInlineASMColon": {
+      "type": "string",
+      "enum": ["Never", "OnlyMultiline", "Always"]
+    },
+    "BreakBeforeTernaryOperators": {
+      "type": "boolean"
+    },
+    "BreakConstructorInitializers": {
+      "type": "string",
+      "enum": ["BeforeColon", "BeforeComma", "AfterColon"]
+    },
+    "BreakInheritanceList": {
+      "type": "string",
+      "enum": ["BeforeColon", "BeforeComma", "AfterColon", "AfterComma"]
+    },
+    "BreakStringLiterals": {
+      "type": "boolean"
+    },
+    "ColumnLimit": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "CommentPragmas": {
+      "type": "string"
+    },
+    "CompactNamespaces": {
+      "type": "boolean"
+    },
+    "ConstructorInitializerAllOnOneLineOrOnePerLine": {
+      "type": "boolean",
+      "description": "Deprecated. Use ConstructorInitializerIndentWidth instead."
+    },
+    "ConstructorInitializerIndentWidth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "ContinuationIndentWidth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "Cpp11BracedListStyle": {
+      "type": "boolean"
+    },
+    "DeriveLineEnding": {
+      "type": "boolean"
+    },
+    "DerivePointerAlignment": {
+      "type": "boolean"
+    },
+    "DisableFormat": {
+      "type": "boolean"
+    },
+    "EmptyLineAfterAccessModifier": {
+      "type": "string",
+      "enum": ["Leave", "Always", "Never"]
+    },
+    "EmptyLineBeforeAccessModifier": {
+      "type": "string",
+      "enum": ["Leave", "Always", "Never", "LogicalBlock"]
+    },
+    "ExperimentalAutoDetectBinPacking": {
+      "type": "boolean"
+    },
+    "FixNamespaceComments": {
+      "type": "boolean"
+    },
+    "ForEachMacros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "IfMacros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "IncludeBlocks": {
+      "type": "string",
+      "enum": ["Preserve", "Merge", "Regroup"]
+    },
+    "IncludeCategories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Regex": {
+            "type": "string"
+          },
+          "Priority": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "SortPriority": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "CaseSensitive": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "IncludeIsMainRegex": {
+      "type": "string"
+    },
+    "IncludeIsMainSourceRegex": {
+      "type": "string"
+    },
+    "IndentAccessModifiers": {
+      "type": "boolean"
+    },
+    "IndentCaseBlocks": {
+      "type": "boolean"
+    },
+    "IndentCaseLabels": {
+      "type": "boolean"
+    },
+    "IndentExternBlock": {
+      "type": "string",
+      "enum": ["AfterExternBlock", "NoIndent", "Indent"]
+    },
+    "IndentGotoLabels": {
+      "type": "boolean"
+    },
+    "IndentPPDirectives": {
+      "type": "string",
+      "enum": ["None", "AfterHash", "BeforeHash"]
+    },
+    "IndentRequiresClause": {
+      "type": "boolean"
+    },
+    "IndentWidth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "IndentWrappedFunctionNames": {
+      "type": "boolean"
+    },
+    "InsertBraces": {
+      "type": "boolean"
+    },
+    "InsertNewlineAtEOF": {
+      "type": "boolean"
+    },
+    "InsertTrailingCommas": {
+      "type": "string",
+      "enum": ["None", "Wrapped"]
+    },
+    "IntegerLiteralSeparator": {
+      "type": "object",
+      "properties": {
+        "Binary": {
+          "type": "integer"
+        },
+        "BinaryMinDigits": {
+          "type": "integer"
+        },
+        "Decimal": {
+          "type": "integer"
+        },
+        "DecimalMinDigits": {
+          "type": "integer"
+        },
+        "Hex": {
+          "type": "integer"
+        },
+        "HexMinDigits": {
+          "type": "integer"
+        }
+      }
+    },
+    "JavaImportGroups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "JavaScriptQuotes": {
+      "type": "string",
+      "enum": ["Leave", "Single", "Double"]
+    },
+    "JavaScriptWrapImports": {
+      "type": "boolean"
+    },
+    "KeepEmptyLinesAtEOF": {
+      "type": "boolean"
+    },
+    "KeepEmptyLinesAtTheStartOfBlocks": {
+      "type": "boolean"
+    },
+    "LambdaBodyIndentation": {
+      "type": "string",
+      "enum": ["Signature", "OuterScope"]
+    },
+    "Language": {
+      "type": "string",
+      "enum": ["None", "Cpp", "CSharp", "Java", "JavaScript", "Json", "ObjC", "Proto", "TableGen", "TextProto", "Verilog"]
+    },
+    "LineEnding": {
+      "type": "string",
+      "enum": ["LE_LF", "LE_CRLF", "LE_DeriveLF", "LE_DeriveCRLF"]
+    },
+    "MacroBlockBegin": {
+      "type": "string"
+    },
+    "MacroBlockEnd": {
+      "type": "string"
+    },
+    "Macros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "MaxEmptyLinesToKeep": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "NamespaceIndentation": {
+      "type": "string",
+      "enum": ["None", "Inner", "All"]
+    },
+    "NamespaceMacros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ObjCBinPackProtocolList": {
+      "type": "string",
+      "enum": ["Always", "Never", "Auto"]
+    },
+    "ObjCBlockIndentWidth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "ObjCBreakBeforeNestedBlockParam": {
+      "type": "boolean"
+    },
+    "ObjCSpaceAfterProperty": {
+      "type": "boolean"
+    },
+    "ObjCSpaceBeforeProtocolList": {
+      "type": "boolean"
+    },
+    "PPIndentWidth": {
+      "type": "integer"
+    },
+    "PackConstructorInitializers": {
+      "type": "string",
+      "enum": ["Never", "BinPack", "CurrentLine", "NextLine", "NextLineOnly"]
+    },
+    "PenaltyBreakAssignment": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "PenaltyBreakBeforeFirstCallParameter": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "PenaltyBreakComment": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "PenaltyBreakFirstLessLess": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "PenaltyBreakOpenParenthesis": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "PenaltyBreakString": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "PenaltyBreakTemplateDeclaration": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "PenaltyExcessCharacter": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "PenaltyIndentedWhitespace": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "PenaltyReturnTypeOnItsOwnLine": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "PointerAlignment": {
+      "type": "string",
+      "enum": ["Left", "Right", "Middle"]
+    },
+    "QualifierAlignment": {
+      "type": "string",
+      "enum": ["Left", "Right", "Leave", "Custom"]
+    },
+    "QualifierOrder": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["const", "inline", "static", "friend", "constexpr", "volatile", "restrict", "type"]
+      },
+      "contains": {
+        "type": "string",
+        "enum": ["type"]
+      }
+    },
+    "RawStringFormats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Language": {
+            "type": "string",
+            "enum": ["None", "Cpp", "CSharp", "Java", "JavaScript", "Json", "ObjC", "Proto", "TableGen", "TextProto", "Verilog"]
+          },
+          "Delimiters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "EnclosingFunctions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "CanonicalDelimiter": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ReferenceAlignment": {
+      "type": "string",
+      "enum": ["Left", "Right", "Middle"]
+    },
+    "ReflowComments": {
+      "type": "boolean"
+    },
+    "RemoveBracesLLVM": {
+      "type": "boolean"
+    },
+    "RemoveParentheses": {
+      "type": "string",
+      "enum": ["Leave", "MultipleParentheses", "ReturnStatement"]
+    },
+    "RemoveSemicolon": {
+      "type": "boolean"
+    },
+    "RequiresClausePosition": {
+      "type": "string",
+      "enum": ["OwnLine", "WithPreceding", "WithFollowing", "SingleLine"]
+    },
+    "RequiresExpressionIndentation": {
+      "type": "string",
+      "enum": ["OuterScope", "Keyword"]
+    },
+    "SeparateDefinitionBlocks": {
+      "type": "string",
+      "enum": ["Leave", "Always", "Never"]
+    },
+    "ShortNamespaceLines": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "SortIncludes": {
+      "type": "string",
+      "enum": ["Never", "CaseInsensitive", "CaseSensitive"]
+    },
+    "SortJavaStaticImport": {
+      "type": "string",
+      "enum": ["Before", "After"]
+    },
+    "SortUsingDeclarations": {
+      "type": "string",
+      "enum": ["Never", "Lexicographic", "LexicographicNumeric"]
+    },
+    "SpaceAfterCStyleCast": {
+      "type": "boolean"
+    },
+    "SpaceAfterLogicalNot": {
+      "type": "boolean"
+    },
+    "SpaceAfterTemplateKeyword": {
+      "type": "boolean"
+    },
+    "SpaceAroundPointerQualifiers": {
+      "type": "string",
+      "enum": ["Default", "Before", "After", "Both"]
+    },
+    "SpaceBeforeAssignmentOperators": {
+      "type": "boolean"
+    },
+    "SpaceBeforeCaseColon": {
+      "type": "boolean"
+    },
+    "SpaceBeforeCpp11BracedList": {
+      "type": "boolean"
+    },
+    "SpaceBeforeCtorInitializerColon": {
+      "type": "boolean"
+    },
+    "SpaceBeforeInheritanceColon": {
+      "type": "boolean"
+    },
+    "SpaceBeforeJsonColon": {
+      "type": "boolean"
+    },
+    "SpaceBeforeParens": {
+      "type": "string",
+      "enum": ["Never", "ControlStatements", "ControlStatementsExceptControlMacros", "NonEmptyParentheses", "Always", "Custom"]
+    },
+    "SpaceBeforeParensOptions": {
+      "type": "object",
+      "properties": {
+        "AfterControlStatements": {
+          "type": "boolean"
+        },
+        "AfterForeachMacros": {
+          "type": "boolean"
+        },
+        "AfterFunctionDeclarationName": {
+          "type": "boolean"
+        },
+        "AfterFunctionDefinitionName": {
+          "type": "boolean"
+        },
+        "AfterIfMacros": {
+          "type": "boolean"
+        },
+        "AfterOverloadedOperator": {
+          "type": "boolean"
+        },
+        "AfterRequiresInClause": {
+          "type": "boolean"
+        },
+        "AfterRequiresInExpression": {
+          "type": "boolean"
+        },
+        "BeforeNonEmptyParentheses": {
+          "type": "boolean"
+        }
+      }
+    },
+    "SpaceBeforeRangeBasedForLoopColon": {
+      "type": "boolean"
+    },
+    "SpaceBeforeSquareBrackets": {
+      "type": "boolean"
+    },
+    "SpaceInEmptyBlock": {
+      "type": "boolean"
+    },
+    "SpaceInEmptyParentheses": {
+      "type": "boolean"
+    },
+    "SpacesBeforeTrailingComments": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "SpacesInAngles": {
+      "type": "string",
+      "enum": ["Leave", "Never", "Always"]
+    },
+    "SpacesInCStyleCastParentheses": {
+      "type": "boolean"
+    },
+    "SpacesInConditionalStatement": {
+      "type": "boolean"
+    },
+    "SpacesInContainerLiterals": {
+      "type": "boolean"
+    },
+    "SpacesInLineCommentPrefix": {
+      "type": "string",
+      "enum": ["Maximum", "Minimum"]
+    },
+    "SpacesInParentheses": {
+      "type": "boolean"
+    },
+    "SpacesInSquareBrackets": {
+      "type": "boolean"
+    },
+    "Standard": {
+      "type": "string",
+      "enum": ["c++03", "c++11", "c++14", "c++17", "c++20", "Latest", "Auto"]
+    },
+    "StatementAttributeLikeMacros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "StatementMacros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "TabWidth": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "TypenameMacros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "UseCRLF": {
+      "type": "boolean"
+    },
+    "UseTab": {
+      "type": "string",
+      "enum": ["Never", "ForIndentation", "ForContinuationAndIndentation", "AlignWithSpaces", "Always"]
+    },
+    "VerilogBreakBetweenInstancePorts": {
+      "type": "boolean"
+    },
+    "WhitespaceSensitiveMacros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "EOF": {
+      "type": "boolean"
+    }
+  }
+}

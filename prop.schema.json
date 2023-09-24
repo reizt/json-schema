@@ -1,0 +1,409 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$ref": "#/definitions/Schema",
+  "definitions": {
+    "Reference": {
+      "type": "object",
+      "required": ["$ref"],
+      "patternProperties": {
+        "^\\$ref$": {
+          "type": "string",
+          "format": "uri-reference"
+        }
+      }
+    },
+    "Schema": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "multipleOf": {
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMinimum": 10
+        },
+        "maximum": {
+          "type": "number"
+        },
+        "exclusiveMaximum": {
+          "type": "boolean",
+          "default": false
+        },
+        "minimum": {
+          "type": "number"
+        },
+        "exclusiveMinimum": {
+          "type": "boolean",
+          "default": false
+        },
+        "maxLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "minLength": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        },
+        "pattern": {
+          "type": "string",
+          "format": "regex"
+        },
+        "maxItems": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "minItems": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        },
+        "uniqueItems": {
+          "type": "boolean",
+          "default": false
+        },
+        "maxProperties": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "minProperties": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        },
+        "required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "enum": {
+          "type": "array",
+          "items": {},
+          "minItems": 1,
+          "uniqueItems": false
+        },
+        "type": {
+          "type": "string",
+          "enum": ["array", "boolean", "integer", "number", "object", "string"]
+        },
+        "not": {
+          "$ref": "#/definitions/Schema"
+        },
+        "allOf": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Schema"
+          }
+        },
+        "oneOf": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Schema"
+          }
+        },
+        "anyOf": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Schema"
+          }
+        },
+        "items": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Schema"
+            },
+            {
+              "$ref": "#/definitions/Reference"
+            }
+          ]
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/Schema"
+              },
+              {
+                "$ref": "#/definitions/Reference"
+              }
+            ]
+          }
+        },
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Schema"
+            },
+            {
+              "$ref": "#/definitions/Reference"
+            },
+            {
+              "type": "boolean"
+            }
+          ],
+          "default": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string",
+          "enum": ["date", "date-time", "password", "byte", "binary", "email", "uuid", "uri", "hostname", "ipv4", "ipv6"]
+        },
+        "default": {},
+        "nullable": {
+          "type": "boolean",
+          "default": false
+        },
+        "discriminator": {
+          "$ref": "#/definitions/Discriminator"
+        },
+        "readOnly": {
+          "type": "boolean",
+          "default": false
+        },
+        "writeOnly": {
+          "type": "boolean",
+          "default": false
+        },
+        "example": {},
+        "deprecated": {
+          "type": "boolean",
+          "default": false
+        },
+        "xml": {
+          "$ref": "#/definitions/XML"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Header": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false
+        },
+        "deprecated": {
+          "type": "boolean",
+          "default": false
+        },
+        "allowEmptyValue": {
+          "type": "boolean",
+          "default": false
+        },
+        "style": {
+          "type": "string",
+          "enum": ["simple"],
+          "default": "simple"
+        },
+        "explode": {
+          "type": "boolean"
+        },
+        "allowReserved": {
+          "type": "boolean",
+          "default": false
+        },
+        "schema": {
+          "$ref": "#/definitions/Schema"
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/MediaType"
+          },
+          "minProperties": 1,
+          "maxProperties": 1
+        },
+        "example": {},
+        "examples": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Example"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/definitions/ExampleXORExamples"
+        },
+        {
+          "$ref": "#/definitions/SchemaXORContent"
+        }
+      ]
+    },
+    "Example": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "value": {},
+        "externalValue": {
+          "type": "string",
+          "format": "uri-reference"
+        }
+      },
+      "patternProperties": {
+        "^x-": {}
+      },
+      "additionalProperties": false
+    },
+    "MediaType": {
+      "type": "object",
+      "properties": {
+        "schema": {
+          "$ref": "#/definitions/Schema"
+        },
+        "example": {},
+        "examples": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Example"
+          }
+        },
+        "encoding": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Encoding"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/definitions/ExampleXORExamples"
+        }
+      ]
+    },
+    "Discriminator": {
+      "type": "object",
+      "required": ["propertyName"],
+      "properties": {
+        "propertyName": {
+          "type": "string"
+        },
+        "mapping": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "XML": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string",
+          "format": "uri"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "attribute": {
+          "type": "boolean",
+          "default": false
+        },
+        "wrapped": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "patternProperties": {
+        "^x-": {}
+      },
+      "additionalProperties": false
+    },
+    "SchemaXORContent": {
+      "description": "Schema and content are mutually exclusive, at least one is required",
+      "not": {
+        "required": ["schema", "content"]
+      },
+      "oneOf": [
+        {
+          "required": ["schema"]
+        },
+        {
+          "required": ["content"],
+          "description": "Some properties are not allowed if content is present",
+          "allOf": [
+            {
+              "not": {
+                "required": ["style"]
+              }
+            },
+            {
+              "not": {
+                "required": ["explode"]
+              }
+            },
+            {
+              "not": {
+                "required": ["allowReserved"]
+              }
+            },
+            {
+              "not": {
+                "required": ["example"]
+              }
+            },
+            {
+              "not": {
+                "required": ["examples"]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "ExampleXORExamples": {
+      "description": "Example and examples are mutually exclusive",
+      "not": {
+        "required": ["example", "examples"]
+      }
+    },
+    "Encoding": {
+      "type": "object",
+      "properties": {
+        "contentType": {
+          "type": "string"
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Header"
+          }
+        },
+        "style": {
+          "type": "string",
+          "enum": ["form", "spaceDelimited", "pipeDelimited", "deepObject"]
+        },
+        "explode": {
+          "type": "boolean"
+        },
+        "allowReserved": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

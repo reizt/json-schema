@@ -1,0 +1,107 @@
+{
+  "type": "object",
+  "required": ["version", "runtime"],
+  "properties": {
+    "version": {
+      "type": "number",
+      "enum": [1.0]
+    },
+    "runtime": {
+      "type": "string",
+      "pattern": "^(?:nodejs|ruby|go|java|python|php|dotnet)[0-9.]*$"
+    },
+    "build": {
+      "type": "object",
+      "properties": {
+        "commands": {
+          "pre-build": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "build": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "post-build": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "env": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": ["name", "value"]
+          }
+        }
+      }
+    },
+    "run": {
+      "type": "object",
+      "properties": {
+        "runtime-version": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "network": {
+          "type": "object",
+          "properties": {
+            "port": {
+              "type": "integer"
+            },
+            "env": {
+              "type": "string",
+              "description": "Load the port specified above into an environment variable"
+            }
+          }
+        },
+        "env": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": ["name", "value"]
+          }
+        },
+        "secrets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value-from": {
+                "type": "string"
+              }
+            },
+            "required": ["name", "value-from"]
+          }
+        }
+      }
+    }
+  }
+}
